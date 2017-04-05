@@ -1,5 +1,6 @@
 package ca.javadz.encoder;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,5 +31,13 @@ public class DecodeActivity extends AppCompatActivity {
             }
         }
         decodedMsg.setText(String.valueOf(array));
+    }
+
+    public void shareMsg(View view) {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
+        share.putExtra(Intent.EXTRA_TEXT, decodedMsg.getText().toString());
+        startActivity(Intent.createChooser(share, "Share via"));
     }
 }
