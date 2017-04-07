@@ -11,6 +11,7 @@ public class DecodeActivity extends AppCompatActivity {
 
     public EditText msgText;
     public TextView decodedMsg;
+    public EditText key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class DecodeActivity extends AppCompatActivity {
 
         msgText = (EditText) findViewById(R.id.msgText);
         decodedMsg = (TextView) findViewById(R.id.decodedMsg);
+        key = (EditText) findViewById(R.id.key);
     }
 
     public void decode(View view) {
@@ -26,7 +28,7 @@ public class DecodeActivity extends AppCompatActivity {
         char[] array = str.toCharArray();
         for (int i = 0; i < array.length; i++) {
             if (array[i] != ' ') {
-                int temp = (int) array[i] - 7;
+                int temp = (int) array[i] - Integer.parseInt(key.getText().toString());
                 array[i] = (char) temp;
             }
         }

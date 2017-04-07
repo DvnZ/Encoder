@@ -11,6 +11,7 @@ public class EncodeActivity extends AppCompatActivity {
 
     public EditText msgText;
     public TextView encodedMsg;
+    public EditText key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +20,15 @@ public class EncodeActivity extends AppCompatActivity {
 
         msgText = (EditText) findViewById(R.id.msgText);
         encodedMsg = (TextView) findViewById(R.id.encodedMsg);
+        key = (EditText) findViewById(R.id.key);
     }
 
     public void encode(View view) {
         String str = msgText.getText().toString();
         char[] array = str.toCharArray();
         for (int i = 0; i < array.length; i++) {
-            if (str.charAt(i) != ' ') {
-                int temp = (int) array[i] + 7;
+            if (array[i] != ' ') {
+                int temp = (int) array[i] + Integer.parseInt(key.getText().toString());
                 array[i] = (char) temp;
             }
         }
